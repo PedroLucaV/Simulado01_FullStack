@@ -2,12 +2,10 @@
 
 class EmpresaService{
     private $conexao;
-    private $empresa;
 
-    public function __construct(Conexao $conexao, Empresa $empresa = null)
+    public function __construct(Conexao $conexao)
     {
         $this->conexao = $conexao->conectar();
-        $this->empresa = $empresa;
     }
 
     public function getData(){

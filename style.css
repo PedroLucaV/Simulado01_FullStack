@@ -124,3 +124,73 @@ footer>.social{
     display: flex;
     gap: 3rem;
 }
+
+.modal_login{
+    text-align: center;
+    padding: 1rem;
+    width: 500px;
+    height: 250px;
+    z-index: 99;
+    position: fixed;
+    flex-direction: column;
+    top: 100px;
+    left: calc(50% - 250px);
+    display: none;
+    background-color: white;
+    border-radius: 25px;
+}
+
+.modal_login>form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 1rem;
+    gap: 0.8rem;
+}
+
+.modal_login>form>input{
+    height: 40px;
+    padding: 0 1rem;
+    font-size: 14pt;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.modal_login>form>div{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+.modal_login>form>div>button{
+    height: 35px;
+    border: none;
+    width: 100%;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.modal_login>form>div>button:nth-child(1){
+    background-color: white;
+    border: 3px #D97014 solid;
+}
+
+.modal_login>form>div>button:nth-child(2) {
+    background-color: #D97014;
+    color: white;
+}
+
+.modal_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 98;
+    display: none;
+}
+
+.modal_overlay.active,
+.modal_login.active {
+    display: block;
+}

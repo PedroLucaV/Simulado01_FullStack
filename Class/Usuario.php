@@ -1,8 +1,7 @@
 <?php
 
-class Empresa{
+class Usuario{
     private string $id;
-    private string $logo;
 
     public function __get($atributo)
     {

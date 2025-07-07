@@ -1,7 +1,11 @@
 <?php
 define('ROOT_PATH', dirname(__FILE__));
+session_start();
+// unset($_SESSION['erro']);
+// print_r($_SESSION);
 require_once './Controller/empresa_controller.php';
 require_once './Controller/post_controller.php';
+require_once './Controller/user_controller.php';
 ?>
 
 <!DOCTYPE html>
@@ -13,8 +17,35 @@ require_once './Controller/post_controller.php';
     <link rel="stylesheet" href="./style.css">
     <title>Sabor do Brasil</title>
 </head>
+<script>
+    const loginShow = () => {
+        event.preventDefault();
+        const modalLogin = document.querySelector('.modal_login');
+        const modalOverlay = document.querySelector('.modal_overlay');
+
+        modalLogin.classList.toggle('active');
+        modalOverlay.classList.toggle('active');
+    }
+</script>
 
 <body>
+    <?php if (!isset($_SESSION['nickname'])) ?>
+    <div class="modal_overlay"></div>
+    <div class="modal_login">
+        <h1>Login</h1>
+        <form action="login.php" method="post">
+            <input type="text" placeholder="Digite seu nome" name="nickname">
+            <input type="password" placeholder="Digite sua senha" name="senha">
+            <div>
+                <button onclick="loginShow()">Cancelar</button>
+                <button type="submit">Entrar</button>
+            </div>
+            <?php if (isset($_SESSION['erro'])) { ?>
+                <p>Erro: Usuário ou senha incorreto</p>
+            <?php } ?>
+        </form>
+    </div>
+    <?php ?>
     <main>
         <section class="enterprise_data">
             <?php if (!isset($_SESSION['nickname'])) { ?>
@@ -25,7 +56,12 @@ require_once './Controller/post_controller.php';
 
                 </div>
             <?php } else { ?>
-                <button class="login">Sair</button>
+                <img src="./Assets/logo/<?= $empresa[0]['logo'] ?>" class="logo" alt="">
+                <p class="name"><?= $empresa[0]['nome'] ?></p>
+                <span class="line"></span>
+                <div class="like_deslike">
+
+                </div>
             <?php } ?>
         </section>
         <section class="posts">
@@ -59,7 +95,7 @@ require_once './Controller/post_controller.php';
         </section>
         <section class="user_data">
             <?php if (!isset($_SESSION['nickname'])) { ?>
-                <button class="login">Login</button>
+                <button onclick="loginShow()" class="login">Login</button>
             <?php } else { ?>
                 <button class="login">Sair</button>
             <?php } ?>
