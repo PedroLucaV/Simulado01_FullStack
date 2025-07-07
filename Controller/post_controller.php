@@ -6,3 +6,6 @@ $conexao = new Conexao();
 
 $postService = new PostService($conexao);
 $posts = $postService->getData();
+
+$likesAll;
+$dislikesAll;

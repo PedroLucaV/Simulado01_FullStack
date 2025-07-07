@@ -21,6 +21,9 @@ require_once './Controller/post_controller.php';
                 <img src="./Assets/logo/<?= $empresa[0]['logo'] ?>" class="logo" alt="">
                 <p class="name"><?= $empresa[0]['nome'] ?></p>
                 <span class="line"></span>
+                <div class="like_deslike">
+
+                </div>
             <?php } else { ?>
                 <button class="login">Sair</button>
             <?php } ?>
@@ -35,14 +38,20 @@ require_once './Controller/post_controller.php';
                         <p><?= $post['local'] ?></p>
                         <p><?= $post['cidade'] ?></p>
                     </div>
-                    <div>
+                    <div class="like_com">
                         <div>
-                            <span></span>
-                            <span></span>
+                            <span>
+                                <img src="./Assets/icones/flecha_baixo_vazia.svg" alt="">
+                                <p><?= $post['likes_up'] ? $post['likes_up'] : 0 ?></p>
+                            </span>
+                            <span>
+                                <img src="./Assets/icones/flecha_baixo_vazia.svg" alt="">
+                                <p><?= $post['likes_down'] ? $post['likes_down'] : 0 ?></p>
+                            </span>
                         </div>
                         <span>
                             <img src="./Assets/icones/chat.svg" alt="">
-                            <!-- <p><?= $post['comentarios'] ?></p> -->
+                            <p><?= $post['comentarios'] ?></p>
                         </span>
                     </div>
                 </div>
