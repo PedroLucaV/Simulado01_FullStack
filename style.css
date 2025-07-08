@@ -36,6 +36,29 @@ main{
     display: block;
 }
 
+.like_deslike{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.like_deslike>div{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+.like_deslike>div>p {
+    max-width: 80%;
+    font-size: 14pt;
+}
+
+.like_deslike>div>h3 {
+    font-size: 24pt;
+}
+
 .posts{
     display: flex;
     flex-direction: column;

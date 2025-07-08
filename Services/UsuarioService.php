@@ -11,7 +11,7 @@ class UsuarioService{
     }
 
     public function getData(){
-        $query = 'SELECT nickname, nome, id FROM usuarios where nickname = :id';
+        $query = 'SELECT nickname, nome, id, foto FROM usuarios where nickname = :id';
         $stmt = $this->conexao->prepare($query);
         $stmt->bindValue('id', $this->usuario->__get('id'));
         $stmt->execute();

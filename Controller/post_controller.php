@@ -6,6 +6,20 @@ $conexao = new Conexao();
 
 $postService = new PostService($conexao);
 $posts = $postService->getData();
+$likesAll=0;
+$dislikesAll=0;
+foreach($posts as $post){
+    if($post['likes_up'] == null){
+        $likesAll+=0;
+    }else{
+        $likesAll +=$post['likes_up'];
+    }
+}
 
-$likesAll;
-$dislikesAll;
+foreach ($posts as $post) {
+    if ($post['likes_down'] == null) {
+        $dislikesAll += 0;
+    } else {
+        $dislikesAll += $post['likes_down'];
+    }
+}

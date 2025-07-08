@@ -63,11 +63,18 @@ require_once './Controller/user_controller.php';
                 <p class="name"><?= $empresa[0]['nome'] ?></p>
                 <span class="line"></span>
                 <div class="like_deslike">
-
+                    <div>
+                        <h3><?= $likesAll ?></h3>
+                        <p>Quantidade Likes</p>
+                    </div>
+                    <div>
+                        <h3><?= $dislikesAll ?></h3>
+                        <p>Quantidade Deslikes</p>
+                    </div>
                 </div>
             <?php } else { ?>
-                <img src="./Assets/logo/<?= $empresa[0]['logo'] ?>" class="logo" alt="">
-                <p class="name"><?= $empresa[0]['nome'] ?></p>
+                <img src="./Assets/foto_usuario/<?= $usuario[0]['foto'] ?>" class="logo" alt="">
+                <p class="name"><?= $usuario[0]['nome'] ?></p>
                 <span class="line"></span>
                 <div class="like_deslike">
 
@@ -87,7 +94,7 @@ require_once './Controller/user_controller.php';
                     <div class="like_com">
                         <div>
                             <span>
-                                <img src="./Assets/icones/flecha_baixo_vazia.svg" alt="">
+                                <img src="./Assets/icones/flecha_cima_vazia.svg" alt="">
                                 <p><?= $post['likes_up'] ? $post['likes_up'] : 0 ?></p>
                             </span>
                             <span>
