@@ -101,11 +101,11 @@ require_once './Controller/user_controller.php';
                     <div class="like_com">
                         <div>
                             <span>
-                                <img src="./Assets/icones/flecha_cima_vazia.svg" alt="">
+                                <img src="./Assets/icones/<?= isset($_SESSION['nickname']) ? validaLike($post['id_publicacao'], $usuario[0]['id'], 'up') ? 'flecha_cima_cheia.svg' : 'flecha_cima_vazia.svg' : 'flecha_cima_vazia.svg' ?>" alt="" onclick="window.location.href = 'post_controller.php?curtir=up&idu=<?= $usuario[0]['id'] ?>&idp=<?= $post['id_publicacao'] ?>'">
                                 <p><?= $post['likes_up'] ? $post['likes_up'] : 0 ?></p>
                             </span>
                             <span>
-                                <img src="./Assets/icones/flecha_baixo_vazia.svg" alt="">
+                                <img src="./Assets/icones/<?= isset($_SESSION['nickname']) ? validaLike($post['id_publicacao'], $usuario[0]['id'], 'down') ? 'flecha_baixo_cheia.svg' : 'flecha_baixo_vazia.svg' : 'flecha_baixo_vazia.svg' ?>" alt="" onclick="window.location.href = 'post_controller.php?curtir=down&idu=<?= $usuario[0]['id'] ?>&idp=<?= $post['id_publicacao'] ?>'">
                                 <p><?= $post['likes_down'] ? $post['likes_down'] : 0 ?></p>
                             </span>
                         </div>
