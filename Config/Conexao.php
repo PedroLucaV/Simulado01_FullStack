@@ -5,7 +5,7 @@ class Conexao
     private $host = "localhost";
     private $dbname = "sabordobrasil";
     private $user = "root";
-    private $pass = "";
+    private $pass = "root";
     public function conectar()
     {
         try {

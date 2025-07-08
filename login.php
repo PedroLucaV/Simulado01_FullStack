@@ -18,6 +18,7 @@ foreach($res as $user){
         $_SESSION['nickname'] = $_POST['nickname'];
         unset($_SESSION['erro']);
         header('Location:index.php');
+        exit;
     }
 }
 header('Location:index.php');

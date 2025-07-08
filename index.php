@@ -19,7 +19,7 @@ require_once './Controller/user_controller.php';
 </head>
 <script>
     const loginShow = () => {
-        event.preventDefault();
+        event?.preventDefault();
         const modalLogin = document.querySelector('.modal_login');
         const modalOverlay = document.querySelector('.modal_overlay');
 
@@ -27,6 +27,16 @@ require_once './Controller/user_controller.php';
         modalOverlay.classList.toggle('active');
     }
 </script>
+<?php if (isset($_SESSION['erro'])) {
+    $erromsg = '';
+?>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            loginShow();
+        });
+    </script>
+<?php unset($_SESSION['erro']);
+} ?>
 
 <body>
     <?php if (!isset($_SESSION['nickname'])) ?>
@@ -40,8 +50,8 @@ require_once './Controller/user_controller.php';
                 <button onclick="loginShow()">Cancelar</button>
                 <button type="submit">Entrar</button>
             </div>
-            <?php if (isset($_SESSION['erro'])) { ?>
-                <p>Erro: Usuário ou senha incorreto</p>
+            <?php if (isset($erromsg)) { ?>
+                <p>Erro: Usuário ou senha incorretos</p>
             <?php } ?>
         </form>
     </div>
@@ -97,7 +107,7 @@ require_once './Controller/user_controller.php';
             <?php if (!isset($_SESSION['nickname'])) { ?>
                 <button onclick="loginShow()" class="login">Login</button>
             <?php } else { ?>
-                <button class="login">Sair</button>
+                <button onclick="window.location.href='logout.php'" class="login">Sair</button>
             <?php } ?>
         </section>
     </main>
