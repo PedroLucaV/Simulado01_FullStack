@@ -29,13 +29,13 @@ require_once './Controller/user_controller.php';
 </script>
 <?php if (isset($_SESSION['erro'])) {
     $erromsg = '';
-?>
+    ?>
     <script>
         window.addEventListener('DOMContentLoaded', () => {
             loginShow();
         });
     </script>
-<?php unset($_SESSION['erro']);
+    <?php unset($_SESSION['erro']);
 } ?>
 
 <body>
@@ -102,20 +102,20 @@ require_once './Controller/user_controller.php';
                         <div>
                             <span>
                                 <img src="./Assets/icones/<?= isset($_SESSION['nickname']) ? validaLike($post['id_publicacao'], $usuario[0]['id'], 'up') ? 'flecha_cima_cheia.svg' : 'flecha_cima_vazia.svg' : 'flecha_cima_vazia.svg' ?>" alt="" <?php
-                                                                                                                                                                                                                                                    if (isset($_SESSION['nickname'])) {
-                                                                                                                                                                                                                                                        $url = "post_controller.php?curtir=up&idp={$post['id_publicacao']}&idu={$usuario[0]['id']}";
-                                                                                                                                                                                                                                                        echo "onclick=\"window.location.href='$url'\"";
-                                                                                                                                                                                                                                                    }
-                                                                                                                                                                                                                                                    ?>>
+                                            if (isset($_SESSION['nickname'])) {
+                                                $url = "post_controller.php?curtir=up&idp={$post['id_publicacao']}&idu={$usuario[0]['id']}";
+                                                echo "onclick=\"window.location.href='$url'\"";
+                                            }
+                                            ?>>
                                 <p><?= $post['likes_up'] ? $post['likes_up'] : 0 ?></p>
                             </span>
                             <span>
                                 <img src="./Assets/icones/<?= isset($_SESSION['nickname']) ? validaLike($post['id_publicacao'], $usuario[0]['id'], 'down') ? 'flecha_baixo_cheia.svg' : 'flecha_baixo_vazia.svg' : 'flecha_baixo_vazia.svg' ?>" alt="" <?php
-                                                                                                                                                                                                                                                        if (isset($_SESSION['nickname'])) {
-                                                                                                                                                                                                                                                            $url = "post_controller.php?curtir=down&idp={$post['id_publicacao']}&idu={$usuario[0]['id']}";
-                                                                                                                                                                                                                                                            echo "onclick=\"window.location.href='$url'\"";
-                                                                                                                                                                                                                                                        }
-                                                                                                                                                                                                                                                        ?>>
+                                            if (isset($_SESSION['nickname'])) {
+                                                $url = "post_controller.php?curtir=down&idp={$post['id_publicacao']}&idu={$usuario[0]['id']}";
+                                                echo "onclick=\"window.location.href='$url'\"";
+                                            }
+                                            ?>>
                                 <p><?= $post['likes_down'] ? $post['likes_down'] : 0 ?></p>
                             </span>
                         </div>
