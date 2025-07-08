@@ -11,7 +11,11 @@ class UsuarioService{
     }
 
     public function getData(){
-        $query = 'SELECT nickname, nome, id, foto FROM usuarios where nickname = :id';
+        $query = 'SELECT u.nickname, u.nome, u.id, u.foto, SUM(l.tipo_avaliacao = "up") AS likes_up, SUM(l.tipo_avaliacao = "down" ) AS likes_down
+FROM usuarios as u
+LEFT JOIN likes as l on (u.id = l.id_usuario)
+where nickname = :id
+GROUP BY u.id';
         $stmt = $this->conexao->prepare($query);
         $stmt->bindValue('id', $this->usuario->__get('id'));
         $stmt->execute();

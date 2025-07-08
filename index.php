@@ -77,7 +77,14 @@ require_once './Controller/user_controller.php';
                 <p class="name"><?= $usuario[0]['nome'] ?></p>
                 <span class="line"></span>
                 <div class="like_deslike">
-
+                    <div>
+                        <h3><?= $usuario[0]['likes_up'] ? $usuario[0]['likes_up'] : 0 ?></h3>
+                        <p>Quantidade Likes</p>
+                    </div>
+                    <div>
+                        <h3><?= $usuario[0]['likes_down'] ? $usuario[0]['likes_down'] : 0 ?></h3>
+                        <p>Quantidade Deslikes</p>
+                    </div>
                 </div>
             <?php } ?>
         </section>
