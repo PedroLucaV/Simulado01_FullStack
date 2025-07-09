@@ -91,7 +91,7 @@ require_once './Controller/user_controller.php';
         <?php if(isset($_GET['post'])){ $post = $postService->getById($_GET['post'])?>
             <section class="posts">
             <h1>Publicações</h1>
-            <div class="post">
+            <article class="post">
                     <h2><?= $post['titulo_prato'] ?></h2>
                 <img src="./Assets/publicacao/<?= $post['foto'] ?>" alt="">
                 <div class="local">
@@ -124,13 +124,13 @@ require_once './Controller/user_controller.php';
                         <p><?= $post['comentarios'] ?></p>
                     </span>
                 </div>
-            </div>
+            </article>
             </section>
         <?php }else{?>
             <section class="posts">
             <h1>Publicações</h1>
             <?php foreach ($posts as $post) { ?>
-                <div class="post">
+                <article class="post">
                     <h2><?= $post['titulo_prato'] ?></h2>
                     <img src="./Assets/publicacao/<?= $post['foto'] ?>" alt="">
                     <div class="local">
@@ -163,7 +163,7 @@ require_once './Controller/user_controller.php';
                             <p><?= $post['comentarios'] ?></p>
                         </span>
                     </div>
-                </div>
+                </article>
             <?php } ?>
         </section>
         <?php }?> 
