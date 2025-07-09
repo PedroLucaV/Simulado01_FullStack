@@ -39,7 +39,7 @@ function validaLike($idPost, $idUser, $type) {
     }
 }
 
-function curtir($idPost, $idUser, $type)
+function curtir($idPost, $idUser, $type, $post = null)
 {
     $conexao = new Conexao();
     $postService = new PostService($conexao);
@@ -57,10 +57,14 @@ function curtir($idPost, $idUser, $type)
         $postService->like($idPost, $type, $idUser);
     }
 
-    header('Location:index.php');
+    if($post != null){
+        header('Location:index.php?post='. $post);
+    }else{
+        header('Location:index.php');
+    }
     exit;
 }
 
 if(isset($_GET['curtir'])){
-    curtir($_GET['idp'], $_GET['idu'], $_GET['curtir']);
+    curtir($_GET['idp'], $_GET['idu'], $_GET['curtir'], $_GET['post']);
 }

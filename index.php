@@ -88,7 +88,46 @@ require_once './Controller/user_controller.php';
                 </div>
             <?php } ?>
         </section>
-        <section class="posts">
+        <?php if(isset($_GET['post'])){ $post = $postService->getById($_GET['post'])?>
+            <section class="posts">
+            <h1>Publicações</h1>
+            <div class="post">
+                    <h2><?= $post['titulo_prato'] ?></h2>
+                <img src="./Assets/publicacao/<?= $post['foto'] ?>" alt="">
+                <div class="local">
+                    <p><?= $post['local'] ?></p>
+                    <p><?= $post['cidade'] ?></p>
+                </div>
+                <div class="like_com">
+                    <div>
+                        <span>
+                            <img src="./Assets/icones/<?= isset($_SESSION['nickname']) ? validaLike($post['id_publicacao'], $usuario[0]['id'], 'up') ? 'flecha_cima_cheia.svg' : 'flecha_cima_vazia.svg' : 'flecha_cima_vazia.svg' ?>" alt="" <?php
+                                        if (isset($_SESSION['nickname'])) {
+                                            $url = "post_controller.php?curtir=up&idp={$post['id_publicacao']}&idu={$usuario[0]['id']}&post=". $_GET['post'];
+                                            echo "onclick=\"window.location.href='$url'\"";
+                                        }
+                                        ?>>
+                            <p><?= $post['likes_up'] ? $post['likes_up'] : 0 ?></p>
+                        </span>
+                        <span>
+                            <img src="./Assets/icones/<?= isset($_SESSION['nickname']) ? validaLike($post['id_publicacao'], $usuario[0]['id'], 'down') ? 'flecha_baixo_cheia.svg' : 'flecha_baixo_vazia.svg' : 'flecha_baixo_vazia.svg' ?>" alt="" <?php
+                                        if (isset($_SESSION['nickname'])) {
+                                            $url = "post_controller.php?curtir=down&idp={$post['id_publicacao']}&idu={$usuario[0]['id']}&post=" . $_GET['post'];
+                                            echo "onclick=\"window.location.href='$url'\"";
+                                        }
+                                        ?>>
+                            <p><?= $post['likes_down'] ? $post['likes_down'] : 0 ?></p>
+                        </span>
+                    </div>
+                    <span>
+                        <img src="./Assets/icones/chat.svg" alt="" >
+                        <p><?= $post['comentarios'] ?></p>
+                    </span>
+                </div>
+            </div>
+            </section>
+        <?php }else{?>
+            <section class="posts">
             <h1>Publicações</h1>
             <?php foreach ($posts as $post) { ?>
                 <div class="post">
@@ -119,7 +158,7 @@ require_once './Controller/user_controller.php';
                                 <p><?= $post['likes_down'] ? $post['likes_down'] : 0 ?></p>
                             </span>
                         </div>
-                        <span>
+                        <span onclick="window.location.href = `index.php?post=<?= $post['id_publicacao'] ?>`">
                             <img src="./Assets/icones/chat.svg" alt="">
                             <p><?= $post['comentarios'] ?></p>
                         </span>
@@ -127,6 +166,7 @@ require_once './Controller/user_controller.php';
                 </div>
             <?php } ?>
         </section>
+        <?php }?> 
         <section class="user_data">
             <?php if (!isset($_SESSION['nickname'])) { ?>
                 <button onclick="loginShow()" class="login">Login</button>

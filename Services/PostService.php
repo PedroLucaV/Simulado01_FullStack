@@ -65,4 +65,17 @@ GROUP BY p.id_publicacao
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result ? $result['tipo_avaliacao'] : null;
     }
+
+    public function getById($idPost){
+        $query = 'SELECT p.id_publicacao, p.foto, p.local, p.cidade, p.titulo_prato, COUNT(c.comentario) as comentarios, SUM(l.tipo_avaliacao = "up") AS likes_up,SUM(l.tipo_avaliacao = "down" ) AS likes_down
+FROM publicacao as p
+left join comentarios as c on (p.id_publicacao = c.id_publicacao)
+left join likes as l on (p.id_publicacao = l.id_publicacao)
+WHERE p.id_publicacao = ?
+GROUP BY p.id_publicacao';
+        $stmt = $this->conexao->prepare($query);
+        $stmt->bindValue(1, $idPost);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
