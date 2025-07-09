@@ -27,6 +27,15 @@ require_once './Controller/comment_controller.php';
         modalOverlay.classList.toggle('active');
     }
 
+    const deletar = () => {
+        event?.preventDefault();
+        const modalLogin = document.querySelector('.deletar');
+        const modalOverlay = document.querySelector('.modal_overlay');
+
+        modalLogin.classList.toggle('active');
+        modalOverlay.classList.toggle('active');
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         const comentario = document.querySelector('#comentario');
         const btnSend = document.querySelector('.btn-send');
@@ -54,8 +63,9 @@ require_once './Controller/comment_controller.php';
 } ?>
 
 <body>
+<div class="modal_overlay"></div>
     <?php if (!isset($_SESSION['nickname'])) ?>
-    <div class="modal_overlay"></div>
+    
     <div class="modal_login">
         <h1>Login</h1>
         <form action="login.php" method="post">
@@ -153,8 +163,17 @@ require_once './Controller/comment_controller.php';
                     <h3><?= $comment['nickname'] ?></h3>
                     <?php if($comment['nickname'] == $_SESSION['nickname']){?>
                         <div>
-                            <img src="./Assets/icones/lixeira_deletar.svg" alt="">
+                            <img src="./Assets/icones/lixeira_deletar.svg" onclick="deletar()" alt="">
                             <img src="./Assets/icones/lapis_editar.svg" alt="">
+                                <div class="modal_login deletar">
+                                    <h1>Deseja deletar o comentario?</h1>
+                                    <form action="comment_controller.php?delete=<?= $comment['id']?>&post=<?= $post['id_publicacao'] ?>" method="post">
+                                        <div>
+                                            <button onclick="deletar()">Cancelar</button>
+                                            <button type="submit">Deletar</button>
+                                        </div>
+                                    </form>
+                                </div>
                         </div>
                     <?php }?>
                     </span>

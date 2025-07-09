@@ -23,5 +23,6 @@ function delete($id){
 }
 
 if(isset($_GET['delete'])){
-    delete($_GET['id']);
+    delete($_GET['delete']);
+    header('Location:index.php?post=' . $_GET['post']);
 }

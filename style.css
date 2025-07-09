@@ -170,9 +170,15 @@ main{
     font-size: 18pt;
 }
 
-.comments>h3 {
+.comments h3 {
     font-weight: bold;
     font-size: 20pt;
+}
+
+.comments>span{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .user_data{
@@ -225,6 +231,11 @@ footer>.social{
     display: none;
     background-color: white;
     border-radius: 25px;
+}
+
+.deletar{
+    height: 100px;
+    padding: 1rem;
 }
 
 .modal_login>form{

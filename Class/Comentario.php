@@ -3,11 +3,11 @@
 class Comentario
 {
     private $id;
-    private string $id_usuario;
-    private string $id_post;
-    private string $comentario;
+    private $id_usuario;
+    private $id_post;
+    private $comentario;
 
-    public function __construct(?string $id_usuario = null, ?string $id_post = null, ?string $comentario = null, ?int $id = null){
+    public function __construct($id_usuario = null, $id_post = null, $comentario = null, ?int $id = null){
         $this->id_usuario = $id_usuario;
         $this->id_post = $id_post;
         $this->comentario = $comentario;
