@@ -21,12 +21,19 @@ class ComentarioService{
     }
 
     public function getAll(){
-        $query = 'SELECT c.id, c.comentario, u.nickname
+        $query = 'SELECT c.id, c.comentario, u.nickname, u.id as idU
 FROM comentarios as c
 LEFT JOIN usuarios as u on (c.id_usuario = u.id)
 ';
         $stmt = $this->conexao->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function deleteComment(){
+        $query = 'DELETE FROM comentarios where id = ?';
+        $stmt = $this->conexao->prepare($query);
+        $stmt->bindValue(1, $this->comentario->__get('id'));
+        $stmt->execute();
     }
 }

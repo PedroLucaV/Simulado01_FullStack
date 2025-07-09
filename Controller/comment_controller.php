@@ -14,3 +14,14 @@ function comentar($comentario, $postId){
 }
 
 $comments = $comentarioService ->getAll();
+
+function delete($id){
+    $conexao = new Conexao();
+    $comentario = new Comentario(id: $id);
+    $comentarioService = new ComentarioService($conexao, $comentario);
+    $comentarioService->deleteComment();
+}
+
+if(isset($_GET['delete'])){
+    delete($_GET['id']);
+}

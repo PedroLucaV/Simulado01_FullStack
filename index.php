@@ -149,7 +149,15 @@ require_once './Controller/comment_controller.php';
             </div>
             <?php foreach ($comments as $comment) { ?>
                 <div class="comments">
-                    <h3><?=$comment['nickname']?></h3>
+                    <span>
+                    <h3><?= $comment['nickname'] ?></h3>
+                    <?php if($comment['nickname'] == $_SESSION['nickname']){?>
+                        <div>
+                            <img src="./Assets/icones/lixeira_deletar.svg" alt="">
+                            <img src="./Assets/icones/lapis_editar.svg" alt="">
+                        </div>
+                    <?php }?>
+                    </span>
                     <p><?= $comment['comentario']?></p>
                 </div>
             <?php } ?>
