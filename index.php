@@ -1,11 +1,11 @@
 <?php
-define('ROOT_PATH', dirname(__FILE__));
-session_start();
+require_once './config.php';
 // unset($_SESSION['erro']);
 // print_r($_SESSION);
 require_once './Controller/empresa_controller.php';
 require_once './Controller/post_controller.php';
 require_once './Controller/user_controller.php';
+require_once './Controller/comment_controller.php';
 ?>
 
 <!DOCTYPE html>
@@ -125,6 +125,19 @@ require_once './Controller/user_controller.php';
                     </span>
                 </div>
             </article>
+            <div class="commentary-session">
+                <h3><?= $usuario[0]['nickname']?></h3>
+                    <form action="comentar.php?post=<?=$_GET['post']?>" method="post">
+                        <textarea name="comentario" id=""></textarea>
+                        <button type="submit">Comentar</button>
+                    </form>
+            </div>
+            <?php foreach ($comments as $comment) { ?>
+                <div class="comments">
+                    <h3><?=$comment['nickname']?></h3>
+                    <p><?= $comment['comentario']?></p>
+                </div>
+            <?php } ?>
             </section>
         <?php }else{?>
             <section class="posts">

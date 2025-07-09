@@ -12,4 +12,5 @@ $usuarioService = new UsuarioService($conexao, $usuario);
 if(isset($_SESSION['nickname'])){
     $usuario->__set('id', $_SESSION['nickname']);
     $usuario = $usuarioService->getData();
+    $_SESSION['id_user'] = $usuario[0]['id'];
 }

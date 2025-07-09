@@ -21,4 +21,11 @@ GROUP BY u.id';
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getAll(){
+        $query = 'SELECT id, nickname FROM usuarios';
+        $stmt = $this->conexao->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

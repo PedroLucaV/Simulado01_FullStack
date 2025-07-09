@@ -9,11 +9,16 @@ class PostService{
     }
 
     public function getData(){
-        $query = 'SELECT p.id_publicacao, p.foto, p.local, p.cidade, p.titulo_prato, COUNT(c.comentario) as comentarios, SUM(l.tipo_avaliacao = "up") AS likes_up,SUM(l.tipo_avaliacao = "down" ) AS likes_down
-FROM publicacao as p
-left join comentarios as c on (p.id_publicacao = c.id_publicacao)
-left join likes as l on (p.id_publicacao = l.id_publicacao)
-GROUP BY p.id_publicacao
+        $query = 'SELECT 
+    p.id_publicacao,
+    p.foto,
+    p.local,
+    p.cidade,
+    p.titulo_prato,
+    (SELECT COUNT(*) FROM comentarios c WHERE c.id_publicacao = p.id_publicacao) AS comentarios,
+    (SELECT COUNT(*) FROM likes l WHERE l.id_publicacao = p.id_publicacao AND l.tipo_avaliacao = "up") AS likes_up,
+    (SELECT COUNT(*) FROM likes l WHERE l.id_publicacao = p.id_publicacao AND l.tipo_avaliacao = "down") AS likes_down
+FROM publicacao p
 ;';
         $stmt = $this->conexao->prepare($query);
         $stmt->execute();
@@ -67,12 +72,17 @@ GROUP BY p.id_publicacao
     }
 
     public function getById($idPost){
-        $query = 'SELECT p.id_publicacao, p.foto, p.local, p.cidade, p.titulo_prato, COUNT(c.comentario) as comentarios, SUM(l.tipo_avaliacao = "up") AS likes_up,SUM(l.tipo_avaliacao = "down" ) AS likes_down
-FROM publicacao as p
-left join comentarios as c on (p.id_publicacao = c.id_publicacao)
-left join likes as l on (p.id_publicacao = l.id_publicacao)
-WHERE p.id_publicacao = ?
-GROUP BY p.id_publicacao';
+        $query = 'SELECT 
+    p.id_publicacao,
+    p.foto,
+    p.local,
+    p.cidade,
+    p.titulo_prato,
+    (SELECT COUNT(*) FROM comentarios c WHERE c.id_publicacao = p.id_publicacao) AS comentarios,
+    (SELECT COUNT(*) FROM likes l WHERE l.id_publicacao = p.id_publicacao AND l.tipo_avaliacao = "up") AS likes_up,
+    (SELECT COUNT(*) FROM likes l WHERE l.id_publicacao = p.id_publicacao AND l.tipo_avaliacao = "down") AS likes_down
+FROM publicacao p
+WHERE p.id_publicacao = ?';
         $stmt = $this->conexao->prepare($query);
         $stmt->bindValue(1, $idPost);
         $stmt->execute();
