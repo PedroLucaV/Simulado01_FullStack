@@ -186,7 +186,13 @@ require_once './Controller/comment_controller.php';
                                 <p><?= $post['likes_down'] ? $post['likes_down'] : 0 ?></p>
                             </span>
                         </div>
-                        <span onclick="window.location.href = `index.php?post=<?= $post['id_publicacao'] ?>`">
+                        <span 
+                        <?php
+                            if (isset($_SESSION['nickname'])) {
+                                $url = "index.php?post=" . $post['id_publicacao'];
+                                echo "onclick=\"window.location.href='$url'\"";
+                            }
+                            ?>>
                             <img src="./Assets/icones/chat.svg" alt="">
                             <p><?= $post['comentarios'] ?></p>
                         </span>
