@@ -132,6 +132,28 @@ main{
     padding: 0.5rem;
 }
 
+.posts>.commentary-session>form{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-end;
+}
+
+.posts>.commentary-session button{
+    width: 150px;
+    height: 50px;
+    background-color: #D97014;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    font-size: 20pt;
+    font-weight: bold;
+}
+
+.posts>.commentary-session button.disable {
+    background-color: #e49855;
+}
+
 .posts>div{
     border: 2px #C2BEBE solid;
 }

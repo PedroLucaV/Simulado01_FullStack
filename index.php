@@ -26,6 +26,21 @@ require_once './Controller/comment_controller.php';
         modalLogin.classList.toggle('active');
         modalOverlay.classList.toggle('active');
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const comentario = document.querySelector('#comentario');
+        const btnSend = document.querySelector('.btn-send');
+
+        comentario.addEventListener('input', (e) => {
+            if (e.target.value.trim() !== '') {
+                btnSend.disabled = false;
+                btnSend.classList.remove('disable');
+            } else {
+                btnSend.disabled = true;
+                btnSend.classList.add('disable');
+            }
+        });
+    });
 </script>
 <?php if (isset($_SESSION['erro'])) {
     $erromsg = '';
@@ -128,8 +143,8 @@ require_once './Controller/comment_controller.php';
             <div class="commentary-session">
                 <h3><?= $usuario[0]['nickname']?></h3>
                     <form action="comentar.php?post=<?=$_GET['post']?>" method="post">
-                        <textarea name="comentario" id=""></textarea>
-                        <button type="submit">Comentar</button>
+                        <textarea name="comentario" id="comentario"></textarea>
+                        <button disabled class="btn-send disable" type="submit">Comentar</button>
                     </form>
             </div>
             <?php foreach ($comments as $comment) { ?>
